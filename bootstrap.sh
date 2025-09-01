@@ -24,13 +24,13 @@ for s in \
   20_flatpak \
   25_snap \
   30_devtools \
+  30_podman \
+  31_podman_images \
   33_station \
   34_toolbox \
-  35_vscode \
   36_node \
   37_python \
   38_go \
-  40_docker \
   45_nomachine \
   50_fonts \
   59_startship \
@@ -39,7 +39,6 @@ for s in \
   62_open_apps_shortcuts \
   63_cmd_shortcuts \
   70_dotfiles \
-  80_services \
   90_cleanup
 do
   script="$ROOT_DIR/scripts/${s}.sh"
