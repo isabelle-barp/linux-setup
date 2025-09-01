@@ -4,3 +4,4 @@ wget
 git
 htop
 vim
+inxi
