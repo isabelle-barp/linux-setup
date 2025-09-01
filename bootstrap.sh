@@ -6,6 +6,7 @@ IFS=$'\n\t'
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$ROOT_DIR/lib/log.sh"
 source "$ROOT_DIR/lib/utils.sh"
+source "$ROOT_DIR/lib/apt.sh"
 
 
 log::title "ElementaryOS Setup"
@@ -35,6 +36,8 @@ for s in \
   59_startship \
   60_shell_ohmyzsh \
   61_swap_alt_super \
+  62_open_apps_shortcuts \
+  63_cmd_shortcuts \
   70_dotfiles \
   80_services \
   90_cleanup
