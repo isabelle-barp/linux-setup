@@ -1,61 +1,87 @@
-# ~/.config/starship.toml — configuração enxuta e legível sem Nerd Fonts
+# ~/.config/starship.toml — bubbles 100% coloridas
 add_newline = false
+command_timeout = 1200
+palette = "nf"
 
+# esquerda: diretório + git
+# linha 2: runtimes (node, python, docker, k8s)
+# direita: duração, status e hora
 format = """
 $directory$git_branch$git_status
-$node$python$golang$docker_context$kubernetes
-$time$cmd_duration$status
-$character
+$nodejs$python$docker_context$kubernetes
+$line_break$character
 """
+right_format = """$cmd_duration$status$time"""
 
+# ---------- Paleta (ajuste se quiser) ----------
+[palettes.nf]
+base  = "#1e1e2e"  # cor do texto dentro das bolhas (contraste)
+blue  = "#89b4fa"
+mauve = "#cba6f7"
+gray  = "#45475a"
+teal  = "#94e2d5"
+yellow= "#f9e2af"
+red   = "#f38ba8"
+green = "#a6e3a1"
+
+# ---------- Diretório ----------
 [directory]
+# pontas e conteúdo com a MESMA cor; padding interno para pintar tudo
+format = "[](fg:blue)[ $path ](bg:blue fg:base)[](fg:blue) "
 truncation_length = 3
 truncate_to_repo = true
+read_only = " 󰌾"
 
+# ---------- Git ----------
 [git_branch]
-symbol = ""
-format = "[git:$branch]($style) "
+symbol = " "
+format = "[](fg:mauve)[ $symbol$branch ](bg:mauve fg:base)[](fg:mauve) "
 
 [git_status]
-conflicted = "‼"
-untracked = "?"
-modified = "!"
-staged = "+"
-ahead = "⇡"
-behind = "⇣"
-diverged = "⇕"
-format = "([$all_status]($style)) "
+format = "[](fg:gray)[ $all_status$ahead_behind ](bg:gray fg:base)[](fg:gray) "
+conflicted = "‼ "
+untracked  = "? "
+stashed    = " "
+modified   = "! "
+staged     = "+ "
+renamed    = "» "
+deleted    = "✘ "
 
-[node]
+# ---------- Runtimes ----------
+[nodejs]
+# (módulo é "nodejs", não "node")
 detect_files = ["package.json", ".nvmrc", "pnpm-workspace.yaml", "bun.lockb"]
-format = "via [node $version]($style) "
+format = "[](fg:green)[  $version ](bg:green fg:base)[](fg:green) "
 
 [python]
-format = "via [py $version]($style) "
-
-[golang]
-format = "via [go $version]($style) "
+format = "[](fg:yellow)[  $version $virtualenv ](bg:yellow fg:base)[](fg:yellow) "
 
 [docker_context]
-format = "[docker:$context]($style) "
+format = "[](fg:blue)[  $context ](bg:blue fg:base)[](fg:blue) "
 
 [kubernetes]
 disabled = false
-format = "[k8s:$context]($style) "
+format = "[](fg:mauve)[ ☸ $context ](bg:mauve fg:base)[](fg:mauve) "
+
+# ---------- Lado direito ----------
+[cmd_duration]
+min_time = 2000
+format = " [](fg:yellow)[ took $duration ](bg:yellow fg:base)[](fg:yellow)"
+
+[status]
+disabled = false
+map_symbol = true
+pipestatus = true
+recognize_signal_code = true
+format = " [](fg:red)[ exit $status ](bg:red fg:base)[](fg:red)"
 
 [time]
 disabled = false
 time_format = "%H:%M"
-format = "[$time]($style) "
+format = " [](fg:teal)[  $time ](bg:teal fg:base)[](fg:teal)"
 
-[cmd_duration]
-min_time = 2000
-format = "[took $duration]($style) "
-
-[status]
-disabled = false
-format = "[exit $status]($style) "
-
+# ---------- Prompt ----------
 [character]
-success_symbol = "❯"
-error_symbol = "❯"
+success_symbol = "[❯](bold green)"
+error_symbol   = "[❯](bold red)"
+vicmd_symbol   = "[❮](bold yellow)"
