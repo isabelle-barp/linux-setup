@@ -18,12 +18,13 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
+source "$ROOT_DIR/lib/apt.sh"
 
 log::section "Instalando/atualizando GitKraken (.deb)"
 
 # ---- Pré-requisitos ----
-sudo apt-get update -y
-sudo apt-get install -y curl wget ca-certificates desktop-file-utils || true
+aptq update
+aptq install curl wget ca-certificates desktop-file-utils || true
 
 ARCH="$(dpkg --print-architecture || echo unknown)"
 if [[ "$ARCH" != "amd64" ]]; then
@@ -48,10 +49,10 @@ if [[ "$SKIP_INSTALL" == "0" ]]; then
   wget -q --show-progress -O gitkraken.deb "$DEB_URL"
 
   log::info "Instalando pacote (.deb)…"
-  if ! sudo apt-get install -y ./gitkraken.deb; then
+  if ! aptq install ./gitkraken.deb; then
     log::info "Tentando via dpkg + correção de dependências…"
     sudo dpkg -i gitkraken.deb || true
-    sudo apt-get -f install -y
+    aptq -f install
   fi
   log::success "GitKraken instalado/atualizado via .deb."
 fi

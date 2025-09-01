@@ -17,6 +17,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
+source "$ROOT_DIR/lib/apt.sh"
 
 # Arquivos geridos
 XBRC="$HOME/.xbindkeysrc"                  # config principal do xbindkeys
@@ -67,8 +68,8 @@ apply_xorg(){
   log::section "Configurando ⌘-atalhos via xbindkeys (Xorg)"
 
   # Dependências
-  sudo apt-get update -y
-  sudo apt-get install -y xbindkeys xdotool || true
+  aptq update
+  aptq install xbindkeys xdotool || true
 
   local MOD; MOD="$(mod_for_cmd)"
   log::info "Tecla física ⌘ mapeada como: $MOD (swap Alt↔Super: $(detect_swap && echo on || echo off))"

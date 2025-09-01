@@ -16,12 +16,13 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
+source "$ROOT_DIR/lib/apt.sh"
 
 log::section "Instalando/ativando Starship"
 
 # Dependências básicas
-sudo apt-get update -y
-sudo apt-get install -y curl ca-certificates || true
+aptq update
+aptq install curl ca-certificates || true
 
 # Garante ~/.local/bin no PATH em próximos logins
 mkdir -p "$HOME/.local/bin" "$HOME/.config"

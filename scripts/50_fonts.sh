@@ -23,6 +23,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
+source "$ROOT_DIR/lib/apt.sh"
 
 log::section "Instalando fontes (Nerd Fonts + Emoji + Powerline)"
 
@@ -43,17 +44,17 @@ else
 fi
 
 # --- Dependências base ---
-sudo apt-get update -y
-sudo apt-get install -y fontconfig unzip curl ca-certificates || true
+aptq update
+aptq install fontconfig unzip curl ca-certificates || true
 
 # Emoji e Powerline (APT)
 if [[ "$INSTALL_EMOJI" == "1" ]]; then
   log::info "Instalando emoji colorido (fonts-noto-color-emoji)…"
-  sudo apt-get install -y fonts-noto-color-emoji || true
+  aptq install fonts-noto-color-emoji || true
 fi
 if [[ "$INSTALL_POWERLINE" == "1" ]]; then
   log::info "Instalando fontes powerline (fallback)…"
-  sudo apt-get install -y fonts-powerline || true
+  aptq install fonts-powerline || true
 fi
 
 # --- Helpers ---

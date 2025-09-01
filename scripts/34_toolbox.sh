@@ -21,12 +21,13 @@ if [[ ! -r "$ROOT_DIR/lib/log.sh" ]]; then
 fi
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
+source "$ROOT_DIR/lib/apt.sh"
 
 log::section "Instalando/atualizando JetBrains Toolboxs"
 
 # --- Dependências ---
-sudo apt-get update -y
-sudo apt-get install -y curl tar jq desktop-file-utils || true
+aptq update
+aptq install curl tar jq desktop-file-utils || true
 
 API_URL="https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
 

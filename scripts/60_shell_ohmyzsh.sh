@@ -21,6 +21,7 @@ if [[ ! -r "$ROOT_DIR/lib/log.sh" ]]; then
 fi
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
+source "$ROOT_DIR/lib/apt.sh"
 
 # Config
 SHELL_SET_DEFAULT="${SHELL_SET_DEFAULT:-1}"
@@ -30,8 +31,8 @@ EXTRA_PLUGINS="${EXTRA_PLUGINS:-}"
 log::section "Instalando Zsh + Oh My Zsh"
 
 # Dependências
-sudo apt-get update -y
-sudo apt-get install -y zsh git curl ca-certificates || true
+aptq update
+aptq install zsh git curl ca-certificates || true
 
 # Instala Oh My Zsh de forma idempotente (clone direto, sem rodar script remoto)
 ZSH_DIR="${ZSH:-$HOME/.oh-my-zsh}"

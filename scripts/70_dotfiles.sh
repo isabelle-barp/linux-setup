@@ -12,10 +12,12 @@ if [[ -z "${BASH_VERSION:-}" ]]; then exec bash "$0" "$@"; fi
 trap 's=$?; echo -e "\e[31m[ERROR]\e[0m ${BASH_SOURCE[0]}:${LINENO}: ${BASH_COMMAND} (exit $s)" >&2; exit $s' ERR
 
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+source "$ROOT_DIR/lib/log.sh"
+source "$ROOT_DIR/lib/apt.sh"
 STOW_DIR="$ROOT_DIR/dotfiles"
 
-sudo apt-get update -y
-sudo apt-get install -y stow
+aptq update
+aptq install stow
 
 # Lista de pacotes (subpastas de dotfiles/)
 if (( "$#" > 0 )); then

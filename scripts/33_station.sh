@@ -13,12 +13,13 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
+source "$ROOT_DIR/lib/apt.sh"
 
 log::section "Instalando/atualizando Station"
 
 # Dependências básicas
-sudo apt-get update -y
-sudo apt-get install -y curl jq ca-certificates desktop-file-utils || true
+aptq update
+aptq install curl jq ca-certificates desktop-file-utils || true
 
 API="https://api.github.com/repos/getstation/desktop-app/releases/latest"
 DATA="$(curl -fsSL -H 'Accept: application/vnd.github+json' "$API")" || {
@@ -40,10 +41,10 @@ if [[ -n "$DEB_URL" ]]; then
   log::info "Baixando pacote .deb ${TAG:+($TAG)} para $ARCH"
   curl -fL --retry 3 -o station.deb "$DEB_URL"
   # Instala/atualiza de forma idempotente
-  if ! sudo apt-get install -y ./station.deb; then
+  if ! aptq install ./station.deb; then
     # fallback dpkg + fix deps
     sudo dpkg -i station.deb || true
-    sudo apt-get -f install -y
+    aptq -f install
   fi
   log::success "Station instalado/atualizado via .deb ${TAG:+$TAG}."
   exit 0
