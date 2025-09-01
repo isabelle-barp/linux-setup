@@ -1,0 +1,72 @@
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Shell script temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+
+# Log files
+*.log
+logs/
+*.out
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Cache and temporary directories
+.cache/
+tmp/
+temp/
+
+# Build artifacts
+dist/
+build/
+*.tar.gz
+*.zip
+
+# Node.js (if scripts install/use Node)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if scripts install/use Python)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Shell history
+.bash_history
+.zsh_history
+
+# Downloaded packages and installers
+*.deb
+*.rpm
+*.dmg
+*.pkg
+*.msi
+*.exe
+*.AppImage
