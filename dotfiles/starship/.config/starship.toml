@@ -1,0 +1,61 @@
+# ~/.config/starship.toml — configuração enxuta e legível sem Nerd Fonts
+add_newline = false
+
+format = """
+$directory$git_branch$git_status
+$node$python$golang$docker_context$kubernetes
+$time$cmd_duration$status
+$character
+"""
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+symbol = ""
+format = "[git:$branch]($style) "
+
+[git_status]
+conflicted = "‼"
+untracked = "?"
+modified = "!"
+staged = "+"
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+format = "([$all_status]($style)) "
+
+[node]
+detect_files = ["package.json", ".nvmrc", "pnpm-workspace.yaml", "bun.lockb"]
+format = "via [node $version]($style) "
+
+[python]
+format = "via [py $version]($style) "
+
+[golang]
+format = "via [go $version]($style) "
+
+[docker_context]
+format = "[docker:$context]($style) "
+
+[kubernetes]
+disabled = false
+format = "[k8s:$context]($style) "
+
+[time]
+disabled = false
+time_format = "%H:%M"
+format = "[$time]($style) "
+
+[cmd_duration]
+min_time = 2000
+format = "[took $duration]($style) "
+
+[status]
+disabled = false
+format = "[exit $status]($style) "
+
+[character]
+success_symbol = "❯"
+error_symbol = "❯"
