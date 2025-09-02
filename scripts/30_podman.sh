@@ -55,9 +55,36 @@ sudo add-apt-repository -y universe >/dev/null 2>&1 || true
 log::info "Atualizando lista de pacotes..."
 aptq update
 
-# ---- Instalar Podman ----
-log::info "Instalando Podman..."
-aptq install podman
+# ---- Instalar Podman e podman-compose ----
+log::info "Instalando Podman e podman-compose..."
+aptq install podman podman-compose || {
+  # Fallback: algumas distros não possuem pacote podman-compose; tenta via pipx
+  log::warn "Pacote 'podman-compose' não disponível via apt. Tentando instalar via pipx..."
+  # Instalar pipx e dependências mínimas
+  aptq install pipx python3-pip python3-venv || true
+  if command -v pipx >/dev/null 2>&1; then
+    if ! pipx list 2>/dev/null | grep -q '^package podman-compose '; then
+      pipx install podman-compose || log::error "Falha ao instalar podman-compose via pipx"
+    fi
+    # Garantir shims do pipx no PATH atual e persistir para novas sessões
+    export PATH="$HOME/.local/bin:$PATH"
+    pipx ensurepath >/dev/null 2>&1 || true
+  else
+    log::error "pipx não disponível e pacote apt de podman-compose ausente. Instale manualmente."
+  fi
+}
+
+# ---- Verificar disponibilidade do podman-compose ----
+if command -v podman-compose >/dev/null 2>&1; then
+  log::success "podman-compose disponível: $(podman-compose --version 2>/dev/null || echo 'instalado')"
+else
+  if command -v pipx >/dev/null 2>&1 && pipx list 2>/dev/null | grep -q '^package podman-compose '; then
+    log::warn "podman-compose instalado via pipx, mas não encontrado no PATH atual."
+    log::info "Execute 'pipx ensurepath' e abra um novo terminal, ou adicione '$HOME/.local/bin' ao PATH."
+  else
+    log::error "podman-compose não foi instalado. Verifique os logs acima ou instale manualmente: 'sudo apt-get install podman-compose' ou 'pipx install podman-compose'"
+  fi
+fi
 
 # ---- Configurações pós-instalação ----
 log::info "Configurando Podman para uso sem root..."
