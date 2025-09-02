@@ -38,6 +38,7 @@ for s in \
   61_swap_alt_super \
   62_open_apps_shortcuts \
   63_cmd_shortcuts \
+  64_fn_keys \
   70_dotfiles \
   90_cleanup
 do
