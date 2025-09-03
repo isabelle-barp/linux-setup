@@ -28,6 +28,7 @@ for s in \
   31_podman_images \
   33_station \
   34_toolbox \
+  35_obsidian \
   36_node \
   37_python \
   38_go \

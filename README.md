@@ -19,13 +19,22 @@ chmod +x scripts/*.sh
 Abaixo está a lista de scripts disponíveis no diretório `scripts`:
 
 1. **10_apt.sh**: Configurações relacionadas ao gerenciador de pacotes APT.
-2. **36_node.sh**: Instalação e configuração do Node.js usando NVM.
-3. **33_station.sh**: Configurações específicas para o aplicativo Station.
-4. **59_startship.sh**: Instalação e configuração do prompt Starship.
-5. **70_dotfiles.sh**: Gerenciamento de pacotes definidos em arquivos dotfiles.
-6. **60_shell_ohmyzsh.sh**: Configuração do shell Zsh com Oh My Zsh.
-7. **34_toolbox.sh**: Configurações e ferramentas adicionais.
-8. **61_swap_alt_super.sh**: Alterna as teclas Alt e Super no teclado.
+2. **30_podman.sh**: Instalação e configuração do Podman.
+3. **31_podman_images.sh**: Download (pull) de imagens do Podman a partir de uma lista.
+4. **32_gitkraken.sh**: Instala/atualiza GitKraken (.deb) e cria atalho.
+5. **33_station.sh**: Instala o Station via .deb ou AppImage como fallback.
+6. **34_toolbox.sh**: Configurações e ferramentas adicionais.
+7. **35_obsidian.sh**: Instala/atualiza Obsidian (.deb preferencial, AppImage fallback) e cria atalho.
+8. **36_node.sh**: Instalação e configuração do Node.js usando NVM.
+9. **50_fonts.sh**: Instala fontes.
+10. **59_startship.sh**: Instalação e configuração do prompt Starship.
+11. **60_shell_ohmyzsh.sh**: Configuração do shell Zsh com Oh My Zsh.
+12. **61_swap_alt_super.sh**: Alterna as teclas Alt e Super no teclado.
+13. **62_open_apps_shortcuts.sh**: Atalhos de apps.
+14. **63_cmd_shortcuts.sh**: Atalhos de comandos.
+15. **64_fn_keys.sh**: Ajustes de teclas Fn.
+16. **70_dotfiles.sh**: Gerenciamento de dotfiles.
+17. **90_cleanup.sh**: Limpeza final.
 
 Cada script pode ser executado diretamente com o comando `bash` ou conforme descrito em seus comentários.
 
