@@ -36,8 +36,9 @@ Abaixo está a lista de scripts disponíveis no diretório `scripts`:
 16. **63_cmd_shortcuts.sh**: Atalhos de comandos.
 17. **64_fn_keys.sh**: Ajustes de teclas Fn.
 18. **65_aider.sh**: Instala o Aider (aider-chat) via pipx, com integrações para provedores (OpenAI/Anthropic/Gemini/Groq).
-19. **70_dotfiles.sh**: Gerenciamento de dotfiles.
-20. **90_cleanup.sh**: Limpeza final.
+19. **66_github_cli.sh**: Instala/atualiza o GitHub CLI (gh) via repositório oficial.
+20. **70_dotfiles.sh**: Gerenciamento de dotfiles.
+21. **90_cleanup.sh**: Limpeza final.
 
 Cada script pode ser executado diretamente com o comando `bash` ou conforme descrito em seus comentários.
 
@@ -50,7 +51,21 @@ Cada script pode ser executado diretamente com o comando `bash` ou conforme desc
   bash scripts/65_aider.sh
   ```
 
-- Após instalar, configure suas chaves de API conforme o(s) provedor(es) desejado(s):
+- Após instalar, você pode configurar as chaves de API via 1Password CLI usando nosso dotfile zsh:
+  
+  ```bash
+  # Instale o 1Password CLI e faça login: bash scripts/37_1password_cli.sh && op signin
+  # Aplique os dotfiles (inclui ~/.zshrc com alias):
+  bash scripts/70_dotfiles.sh zsh
+  # No shell zsh, carregue as chaves na sessão atual:
+  aider-keys
+  ```
+  
+  Por padrão, o dotfile procura itens no cofre "Private" com nomes "OpenAI API Key" e "Anthropic API Key" e campo "api_key". Você pode ajustar via variáveis: `OP_VAULT`, `OP_ITEM_OPENAI`, `OP_ITEM_ANTHROPIC`, `OP_FIELD_OPENAI`, `OP_FIELD_ANTHROPIC`.
+  
+  Guia completo: docs/1password_api_keys.md
+  
+  Alternativamente, exporte manualmente:
   
   ```bash
   export OPENAI_API_KEY=...

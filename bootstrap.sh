@@ -31,8 +31,10 @@ for s in \
   35_obsidian \
   36_node \
   37_1password_cli \
+  38_1password_desktop \
   51_python \
   65_aider \
+  66_github_cli \
   38_go \
   45_nomachine \
   50_fonts \
@@ -41,7 +43,6 @@ for s in \
   61_swap_alt_super \
   62_open_apps_shortcuts \
   63_cmd_shortcuts \
-  64_fn_keys \
   70_dotfiles \
   90_cleanup
 do
