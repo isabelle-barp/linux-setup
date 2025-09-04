@@ -15,13 +15,13 @@ utils::require_like_ubuntu
 
 # Atualiza cache APT silenciosamente (se necessário)
 log::info "Atualizando lista de pacotes"
-aptoq update
+aptq update
 
 # Pacotes básicos para Python e pipx
 PACKAGES=(python3 python3-venv python3-pip pipx)
 
 log::info "Instalando pacotes: ${PACKAGES[*]}"
-aptoq install "${PACKAGES[@]}" || true
+aptq install "${PACKAGES[@]}" || true
 
 # pipx pode não criar o shim se não houver ~/.local/bin no PATH. Garantimos isso.
 # Em algumas distros, o binário pipx fica em /usr/bin/pipx, mas ainda assim é bom ajustar PATH local
