@@ -26,17 +26,44 @@ Abaixo está a lista de scripts disponíveis no diretório `scripts`:
 6. **34_toolbox.sh**: Configurações e ferramentas adicionais.
 7. **35_obsidian.sh**: Instala/atualiza Obsidian (.deb preferencial, AppImage fallback) e cria atalho.
 8. **36_node.sh**: Instalação e configuração do Node.js usando NVM.
-9. **50_fonts.sh**: Instala fontes.
-10. **59_startship.sh**: Instalação e configuração do prompt Starship.
-11. **60_shell_ohmyzsh.sh**: Configuração do shell Zsh com Oh My Zsh.
-12. **61_swap_alt_super.sh**: Alterna as teclas Alt e Super no teclado.
-13. **62_open_apps_shortcuts.sh**: Atalhos de apps.
-14. **63_cmd_shortcuts.sh**: Atalhos de comandos.
-15. **64_fn_keys.sh**: Ajustes de teclas Fn.
-16. **70_dotfiles.sh**: Gerenciamento de dotfiles.
-17. **90_cleanup.sh**: Limpeza final.
+9. **37_1password_cli.sh**: Instala/atualiza o 1Password CLI (op) a partir do repositório oficial.
+10. **51_python.sh**: Instala Python 3, venv, pip e pipx; ajusta PATH para ~/.local/bin.
+11. **50_fonts.sh**: Instala fontes.
+12. **59_startship.sh**: Instalação e configuração do prompt Starship.
+13. **60_shell_ohmyzsh.sh**: Configuração do shell Zsh com Oh My Zsh.
+14. **61_swap_alt_super.sh**: Alterna as teclas Alt e Super no teclado.
+15. **62_open_apps_shortcuts.sh**: Atalhos de apps.
+16. **63_cmd_shortcuts.sh**: Atalhos de comandos.
+17. **64_fn_keys.sh**: Ajustes de teclas Fn.
+18. **65_aider.sh**: Instala o Aider (aider-chat) via pipx, com integrações para provedores (OpenAI/Anthropic/Gemini/Groq).
+19. **70_dotfiles.sh**: Gerenciamento de dotfiles.
+20. **90_cleanup.sh**: Limpeza final.
 
 Cada script pode ser executado diretamente com o comando `bash` ou conforme descrito em seus comentários.
+
+### Aider (IA no terminal)
+
+- Instalação automática pelo bootstrap ou manualmente:
+  
+  ```bash
+  bash scripts/51_python.sh
+  bash scripts/65_aider.sh
+  ```
+
+- Após instalar, configure suas chaves de API conforme o(s) provedor(es) desejado(s):
+  
+  ```bash
+  export OPENAI_API_KEY=...
+  export ANTHROPIC_API_KEY=...
+  export GEMINI_API_KEY=...
+  export GROQ_API_KEY=...
+  ```
+
+- Uso básico (em um repositório Git):
+  
+  ```bash
+  aider .
+  ```
 
 ## Podman
 
