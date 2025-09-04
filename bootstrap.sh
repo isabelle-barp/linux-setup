@@ -30,7 +30,9 @@ for s in \
   34_toolbox \
   35_obsidian \
   36_node \
-  37_python \
+  37_1password_cli \
+  51_python \
+  65_aider \
   38_go \
   45_nomachine \
   50_fonts \
