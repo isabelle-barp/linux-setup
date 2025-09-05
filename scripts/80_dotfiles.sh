@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Aplica dotfiles com GNU Stow sem usar barras nos nomes de pacote.
 # Uso:
-#   bash scripts/70_dotfiles.sh           # autodetecta pacotes em dotfiles/
-#   bash scripts/70_dotfiles.sh zsh git   # aplica só alguns pacotes
+#   bash scripts/80_dotfiles.sh           # autodetecta pacotes em dotfiles/
+#   bash scripts/80_dotfiles.sh zsh git   # aplica só alguns pacotes
 # Variáveis:
 #   STOW_ADOPT=1   -> usa --adopt (move arquivos existentes para o repo)
 
@@ -13,11 +13,11 @@ trap 's=$?; echo -e "\e[31m[ERROR]\e[0m ${BASH_SOURCE[0]}:${LINENO}: ${BASH_COMM
 
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/apt.sh"
+source "$ROOT_DIR/lib/pacman.sh"
 STOW_DIR="$ROOT_DIR/dotfiles"
 
-aptq update
-aptq install stow
+pacq -Sy
+smart_install stow
 
 # Lista de pacotes (subpastas de dotfiles/)
 if (( "$#" > 0 )); then

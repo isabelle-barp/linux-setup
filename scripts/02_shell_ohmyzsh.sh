@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Instala Zsh + Oh My Zsh (idempotente) no ElementaryOS/Ubuntu-like
+# Instala Zsh + Oh My Zsh (idempotente) no Arch Linux
 # Uso:
-#   bash scripts/60_shell_ohmyzsh.sh
+#   bash scripts/02_shell_ohmyzsh.sh
 # Variáveis opcionais:
 #   SHELL_SET_DEFAULT=0   # não trocar o shell padrão (default: 1)
 #   ZSH_THEME=robbyrussell # tema do Oh My Zsh (default: robbyrussell)
@@ -21,7 +21,7 @@ if [[ ! -r "$ROOT_DIR/lib/log.sh" ]]; then
 fi
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/apt.sh"
+source "$ROOT_DIR/lib/pacman.sh"
 
 # Config
 SHELL_SET_DEFAULT="${SHELL_SET_DEFAULT:-1}"
@@ -31,8 +31,8 @@ EXTRA_PLUGINS="${EXTRA_PLUGINS:-}"
 log::section "Instalando Zsh + Oh My Zsh"
 
 # Dependências
-aptq update
-aptq install zsh git curl ca-certificates || true
+pacq -Sy
+smart_install zsh git curl ca-certificates || true
 
 # Instala Oh My Zsh de forma idempotente (clone direto, sem rodar script remoto)
 ZSH_DIR="${ZSH:-$HOME/.oh-my-zsh}"

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Instala e configura o Starship (prompt) no ElementaryOS/Ubuntu-like
+# Configura o Starship (prompt) no Arch Linux
 # Uso:
 #   bash scripts/59_starship.sh
 # Variáveis opcionais:
@@ -16,30 +16,23 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd)"
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/apt.sh"
+source "$ROOT_DIR/lib/pacman.sh"
 
-log::section "Instalando/ativando Starship"
+log::section "Configurando Starship"
 
-# Dependências básicas
-aptq update
-aptq install curl ca-certificates || true
+# Garante ~/.config existe
+mkdir -p "$HOME/.config"
 
-# Garante ~/.local/bin no PATH em próximos logins
-mkdir -p "$HOME/.local/bin" "$HOME/.config"
-grep -q 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.profile" 2>/dev/null || \
-  echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.profile"
-
-# Instala Starship se necessário
+# Verifica se Starship está instalado
 if ! command -v starship >/dev/null 2>&1; then
-  log::info "Baixando e instalando Starship (script oficial)"
-  curl -fsSL https://starship.rs/install.sh | sh -s -- -y
-else
-  log::info "Starship já instalado em: $(command -v starship)"
+  log::error "Starship não encontrado! Certifique-se que foi instalado via pacman."
+  exit 1
 fi
+
+log::info "Starship encontrado em: $(command -v starship)"
 
 # Habilita no(s) shell(s)
 SHELLS="${SHELLS:-zsh bash}"
-
 enable_in_rc() {
   local rc="$1" init_line='eval "$(starship init __SHELL__)"'
   local shell_name="$2"
@@ -57,4 +50,4 @@ for sh in $SHELLS; do
   esac
 done
 
-log::success "Starship pronto! Abra um novo terminal (ou rode: exec zsh / exec bash)."
+log::success "Starship configurado! Abra um novo terminal (ou rode: exec zsh / exec bash)."

@@ -6,11 +6,11 @@ IFS=$'\n\t'
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$ROOT_DIR/lib/log.sh"
 source "$ROOT_DIR/lib/utils.sh"
-source "$ROOT_DIR/lib/apt.sh"
+source "$ROOT_DIR/lib/pacman.sh"
 
 
-log::title "ElementaryOS Setup"
-utils::require_distro "elementary" || utils::require_like_ubuntu
+log::title "Arch Linux Setup"
+utils::require_arch
 utils::require_internet
 
 
@@ -18,32 +18,14 @@ export $(grep -v '^#' .env 2>/dev/null | xargs -d '\n' -r) || true
 
 
 for s in \
-  00_checks \
-  05_repos \
-  10_apt \
-  20_flatpak \
-  25_snap \
-  30_devtools \
+  00_pacman \
+  01_zsh \
+  02_shell_ohmyzsh \
+  03_startship \
+  08_python \
+  10_ly \
   30_podman \
-  31_podman_images \
-  33_station \
-  34_toolbox \
-  35_obsidian \
-  36_node \
-  37_1password_cli \
-  38_1password_desktop \
-  51_python \
-  65_aider \
-  66_github_cli \
-  38_go \
-  45_nomachine \
-  50_fonts \
-  59_startship \
-  60_shell_ohmyzsh \
-  61_swap_alt_super \
-  62_open_apps_shortcuts \
-  63_cmd_shortcuts \
-  70_dotfiles \
+  80_dotfiles \
   90_cleanup
 do
   script="$ROOT_DIR/scripts/${s}.sh"

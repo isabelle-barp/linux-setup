@@ -27,7 +27,7 @@ Abaixo está a lista de scripts disponíveis no diretório `scripts`:
 7. **35_obsidian.sh**: Instala/atualiza Obsidian (.deb preferencial, AppImage fallback) e cria atalho.
 8. **36_node.sh**: Instalação e configuração do Node.js usando NVM.
 9. **37_1password_cli.sh**: Instala/atualiza o 1Password CLI (op) a partir do repositório oficial.
-10. **51_python.sh**: Instala Python 3, venv, pip e pipx; ajusta PATH para ~/.local/bin.
+10. **51_python.sh**: Configura Python e pipx (assume pacotes já instalados); ajusta PATH para ~/.local/bin.
 11. **50_fonts.sh**: Instala fontes.
 12. **59_startship.sh**: Instalação e configuração do prompt Starship.
 13. **60_shell_ohmyzsh.sh**: Configuração do shell Zsh com Oh My Zsh.
@@ -47,7 +47,7 @@ Cada script pode ser executado diretamente com o comando `bash` ou conforme desc
 - Instalação automática pelo bootstrap ou manualmente:
   
   ```bash
-  bash scripts/51_python.sh
+  bash scripts/08_python.sh
   bash scripts/65_aider.sh
   ```
 
@@ -56,7 +56,7 @@ Cada script pode ser executado diretamente com o comando `bash` ou conforme desc
   ```bash
   # Instale o 1Password CLI e faça login: bash scripts/37_1password_cli.sh && op signin
   # Aplique os dotfiles (inclui ~/.zshrc com alias):
-  bash scripts/70_dotfiles.sh zsh
+  bash scripts/80_dotfiles.sh zsh
   # No shell zsh, carregue as chaves na sessão atual:
   aider-keys
   ```

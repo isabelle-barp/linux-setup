@@ -1,27 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Instala Python 3 e pipx (se necessário) e prepara ambiente para instalar ferramentas via pipx
+# Configura Python e pipx (assume que os pacotes já estão instalados)
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/apt.sh"
 source "$ROOT_DIR/lib/utils.sh"
 
-log::section "Instalando Python e pipx (se necessário)"
+log::section "Configurando Python e pipx"
 
-# Garante que é um sistema baseado em Ubuntu/Elementary
-utils::require_like_ubuntu
-
-# Atualiza cache APT silenciosamente (se necessário)
-log::info "Atualizando lista de pacotes"
-aptq update
-
-# Pacotes básicos para Python e pipx
-PACKAGES=(python3 python3-venv python3-pip pipx)
-
-log::info "Instalando pacotes: ${PACKAGES[*]}"
-aptq install "${PACKAGES[@]}" || true
+# Garante que é um sistema Arch Linux
+utils::require_arch
 
 # pipx pode não criar o shim se não houver ~/.local/bin no PATH. Garantimos isso.
 # Em algumas distros, o binário pipx fica em /usr/bin/pipx, mas ainda assim é bom ajustar PATH local
@@ -51,9 +40,9 @@ fi
 if command -v pipx &>/dev/null; then
   pipx ensurepath || true
 else
-  log::warn "pipx não encontrado no PATH após instalação. Tentando via pip."
+  log::warn "pipx não encontrado no PATH. Tentando instalar via pip."
   python3 -m pip install --user --upgrade pipx || true
   "$HOME/.local/bin/pipx" ensurepath || true
 fi
 
-log::success "Python e pipx verificados/instalados."
+log::success "Python e pipx configurados com sucesso."

@@ -18,11 +18,11 @@ return 1
 }
 
 
-utils::require_like_ubuntu(){
+utils::require_arch(){
 if [[ -r /etc/os-release ]]; then . /etc/os-release; fi
-[[ ${ID_LIKE:-} == *ubuntu* || ${ID:-} == ubuntu ]] || {
-echo "Esta automação é para Elementary/Ubuntu"; exit 1; }
+[[ ${ID:-} == arch ]] || {
+echo "Esta automação é para Arch Linux"; exit 1; }
 }
 
 
-utils::need_cmd(){ command -v "$1" >/dev/null 2>&1 || sudo apt-get update && sudo apt-get install -y "$2"; }
+utils::need_cmd(){ command -v "$1" >/dev/null 2>&1 || sudo pacman -Sy --noconfirm "$2"; }
