@@ -2,7 +2,7 @@
 set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/pacman.sh"
+source "$ROOT_DIR/lib/pacman_official.sh"
 
 log::section "Limpeza do sistema"
 log::info "Removendo pacotes órfãos..."

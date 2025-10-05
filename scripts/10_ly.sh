@@ -2,7 +2,8 @@
 set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/pacman.sh"
+source "$ROOT_DIR/lib/pacman_official.sh"
+source "$ROOT_DIR/lib/yay.sh"
 
 
 log::section "Configurando ly como gerenciador de login"
@@ -10,7 +11,14 @@ log::section "Configurando ly como gerenciador de login"
 # Verificar se ly está instalado
 if ! command -v ly >/dev/null 2>&1; then
     log::warn "ly não encontrado, instalando..."
-    smart_install ly
+    if is_official_package ly; then
+        pacq -S --needed ly
+    elif is_aur_package ly; then
+        aur_install -S --needed ly
+    else
+        log::error "Pacote 'ly' não encontrado em repositórios oficiais nem no AUR"
+        exit 1
+    fi
 fi
 
 # Verificar se ly foi instalado com sucesso

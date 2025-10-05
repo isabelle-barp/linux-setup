@@ -6,14 +6,14 @@
 set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/pacman.sh"
+source "$ROOT_DIR/lib/pacman_official.sh"
 
 log::section "Configurando Zsh como shell padrão"
 
 # Instala o Zsh se não estiver presente
 if ! command -v zsh >/dev/null 2>&1; then
   log::info "Zsh não encontrado, instalando..."
-  smart_install zsh
+  pacq -S --needed zsh
 else
   log::info "Zsh já está instalado"
 fi

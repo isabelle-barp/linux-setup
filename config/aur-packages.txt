@@ -1,0 +1,6 @@
+# Lista de pacotes AUR a serem instalados via yay
+# Um pacote por linha. Linhas vazias e comentários (#) são ignorados.
+# Exemplos:
+# visual-studio-code-bin
+# google-chrome
+# 1password

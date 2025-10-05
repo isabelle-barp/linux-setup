@@ -21,7 +21,7 @@ if [[ ! -r "$ROOT_DIR/lib/log.sh" ]]; then
 fi
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/pacman.sh"
+source "$ROOT_DIR/lib/pacman_official.sh"
 
 # Config
 SHELL_SET_DEFAULT="${SHELL_SET_DEFAULT:-1}"
@@ -32,7 +32,7 @@ log::section "Instalando Zsh + Oh My Zsh"
 
 # Dependências
 pacq -Sy
-smart_install zsh git curl ca-certificates || true
+pacq -S --needed zsh git curl ca-certificates || true
 
 # Instala Oh My Zsh de forma idempotente (clone direto, sem rodar script remoto)
 ZSH_DIR="${ZSH:-$HOME/.oh-my-zsh}"

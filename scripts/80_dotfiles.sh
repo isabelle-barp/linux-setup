@@ -13,11 +13,11 @@ trap 's=$?; echo -e "\e[31m[ERROR]\e[0m ${BASH_SOURCE[0]}:${LINENO}: ${BASH_COMM
 
 ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/pacman.sh"
+source "$ROOT_DIR/lib/pacman_official.sh"
 STOW_DIR="$ROOT_DIR/dotfiles"
 
 pacq -Sy
-smart_install stow
+pacq -S --needed stow
 
 # Lista de pacotes (subpastas de dotfiles/)
 if (( "$#" > 0 )); then

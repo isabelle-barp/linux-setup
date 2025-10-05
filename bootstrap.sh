@@ -6,7 +6,6 @@ IFS=$'\n\t'
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$ROOT_DIR/lib/log.sh"
 source "$ROOT_DIR/lib/utils.sh"
-source "$ROOT_DIR/lib/pacman.sh"
 
 
 log::title "Arch Linux Setup"
@@ -19,6 +18,7 @@ export $(grep -v '^#' .env 2>/dev/null | xargs -d '\n' -r) || true
 
 for s in \
   00_pacman \
+  01_yay \
   01_zsh \
   02_shell_ohmyzsh \
   03_startship \
