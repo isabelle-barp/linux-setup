@@ -203,11 +203,8 @@ bindsym XF86ScreenSaver exec --no-startup-id LANG=en_US.UTF-8 flameshot gui -c
 
 exec_always --no-startup-id setxkbmap -model apple -layout us -variant intl
 
-# assign [class="^Cursor$"] 3
-
 assign [class="Conky"] 10
 no_focus [class="Conky"]
 
 # (Optional) Start it on that workspace after i3 starts
 exec --no-startup-id conky -c ~/.config/conky/conky.conf
-exec --no-startup-id xmodmap ~/.Xmodmap

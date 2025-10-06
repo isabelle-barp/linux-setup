@@ -6,6 +6,7 @@
 # Variáveis de ambiente:
 #   STOW_ADOPT=1        -> usa --adopt (move arquivos existentes para o repo)
 #   DOTFILES_REPLACE=0  -> desativa substituição automática (por padrão substitui arquivos existentes)
+#   DOTFILES_TARGET=/outro/destino -> altera somente a pasta de destino (por padrão: $HOME)
 
 set -Eeuo pipefail
 [[ "${DEBUG:-0}" == "1" ]] && set -x
@@ -16,6 +17,8 @@ ROOT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$ROOT_DIR/lib/log.sh"
 source "$ROOT_DIR/lib/pacman_official.sh"
 STOW_DIR="$ROOT_DIR/dotfiles"
+# Target (destination) directory can be customized via DOTFILES_TARGET; defaults to the current user's HOME.
+TARGET_DIR="${DOTFILES_TARGET:-$HOME}"
 
 pacq -Sy
 pacq -S --needed stow
@@ -43,7 +46,7 @@ if [[ "${DOTFILES_REPLACE:-1}" == "1" ]]; then
     # Remove apenas arquivos e symlinks correspondentes
     while IFS= read -r -d '' src; do
       rel_path="${src#"$pkg_dir/"}"
-      target="$HOME/$rel_path"
+      target="$TARGET_DIR/$rel_path"
       if [[ -L "$target" || -f "$target" ]]; then
         echo "[RM] $target"
         rm -f -- "$target"
@@ -54,9 +57,10 @@ else
   echo "[INFO] Substituição automática desabilitada (DOTFILES_REPLACE=0). Arquivos existentes serão mantidos."
 fi
 
-FLAGS=(-d "$STOW_DIR" -t "$HOME" -v -R)
+FLAGS=(-d "$STOW_DIR" -t "$TARGET_DIR" -v -R)
 if [[ "${STOW_ADOPT:-0}" == "1" ]]; then FLAGS+=("--adopt"); fi
 
+echo "Destino: $TARGET_DIR"
 echo "Aplicando pacotes: ${PKGS[*]}"
 stow "${FLAGS[@]}" "${PKGS[@]}"
 
@@ -70,7 +74,7 @@ for pkg in "${PKGS[@]}"; do
     # apenas alvos absolutos
     if [[ "$link_target" == /* ]]; then
       rel_path="${src#"$pkg_dir/"}"
-      target="$HOME/$rel_path"
+      target="$TARGET_DIR/$rel_path"
       mkdir -p -- "$(dirname -- "$target")"
       if [[ -e "$target" || -L "$target" ]]; then
         if [[ "${DOTFILES_REPLACE:-1}" == "1" ]]; then

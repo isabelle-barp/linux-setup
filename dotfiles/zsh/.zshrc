@@ -50,6 +50,27 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 
+# Docker cleanup convenience command
+# Provides `docker-clean` function and `docker-nuke` alias.
+# It prefers the installed symlink at ~/.local/bin/docker-nuke (created by scripts/20_user_scripts.sh),
+# falls back to the repo script if available, and otherwise prints a helpful hint.
+function docker-clean() {
+  local BIN="$HOME/.local/bin/docker-nuke"
+  if [[ -x "$BIN" ]]; then
+    "$BIN" "$@"
+    return $?
+  fi
+  local REPO_SCRIPT="$HOME/Source/Code/Personal/linux-setup/user-scripts/docker-clean-all.sh"
+  if [[ -x "$REPO_SCRIPT" ]]; then
+    "$REPO_SCRIPT" "$@"
+    return $?
+  fi
+  echo "docker cleanup script not found. Tip: run 'bash scripts/20_user_scripts.sh' inside the repo to install it into ~/.local/bin." >&2
+  return 127
+}
+# Backwards-compatible alias
+alias docker-nuke='docker-clean'
+
 # 1Password CLI → export AI API keys for Aider and others
 # Customize via environment variables:
 #   OP_VAULT (default: Private)
