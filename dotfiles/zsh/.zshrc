@@ -131,3 +131,5 @@ export GTK_THEME=Nordic
 export XDG_CURRENT_DESKTOP=i3
 export GTK_APPLICATION_PREFER_DARK_THEME=1
 export CHROME_FORCE_DARK_MODE=1
+# Improve Java (JetBrains) window behavior under i3
+export _JAVA_AWT_WM_NONREPARENTING=1

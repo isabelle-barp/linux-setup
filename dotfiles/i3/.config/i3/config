@@ -198,6 +198,9 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 
 for_window [class="jetbrains-toolbox"] floating enable, move position center
+# JetBrains IDE dialogs sometimes appear on the wrong output; center them on current output
+for_window [class="^jetbrains-.*" window_type="dialog"] floating enable, move window to output current, move position center, focus
+for_window [class="^jetbrains-.*" window_type="utility"] floating enable, move window to output current, move position center
 
 bindsym XF86ScreenSaver exec --no-startup-id LANG=en_US.UTF-8 flameshot gui -c
 
