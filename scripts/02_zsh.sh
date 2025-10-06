@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
 # Define Zsh como shell padrão
 # Uso:
-#   bash scripts/01_zsh.sh
+#   bash scripts/02_zsh.sh
 
 set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/pacman_official.sh"
 
 log::section "Configurando Zsh como shell padrão"
 
-# Instala o Zsh se não estiver presente
+# Verifica se o Zsh está instalado (a instalação é feita via pacman)
 if ! command -v zsh >/dev/null 2>&1; then
-  log::info "Zsh não encontrado, instalando..."
-  pacq -S --needed zsh
+  log::error "Zsh não encontrado. Instale-o via pacman antes de rodar este script (ex.: adicione 'zsh' em config/pacman-packages.txt e execute scripts/00_pacman.sh)."
+  exit 1
 else
-  log::info "Zsh já está instalado"
+  log::info "Zsh encontrado"
 fi
 
 # Define Zsh como shell padrão

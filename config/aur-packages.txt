@@ -1,6 +1,19 @@
-# Lista de pacotes AUR a serem instalados via yay
-# Um pacote por linha. Linhas vazias e comentários (#) são ignorados.
-# Exemplos:
-# visual-studio-code-bin
-# google-chrome
-# 1password
+# System
+google-chrome
+wavebox
+1password
+1password-cli
+obsidian
+
+# Music
+spotify
+
+# Fonts
+nerd-fonts-complete
+nerd-fonts-complete-mono-glyphs
+
+# Development
+jetbrains-toolbox
+gitkraken
+insomnia
+cursor-bin

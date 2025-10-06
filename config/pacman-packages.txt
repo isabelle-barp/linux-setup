@@ -1,42 +1,69 @@
-htop
-zsh
 vim
+htop
 git
-podman
-podman-compose
-nvm
-python
+zsh
+
+# Interface
+i3
+polybar
+rofi
+feh
+picom
+dunst
+libnotify
+ranger
+conky
+stows
+
+# Python
 python-pip
-python-pipx
+python-i3ipc
+python-pywal
+
+# XOrg
 xorg-server
 xorg-xinit
 xorg-xrandr
 xorg-setxkbmap
-ttf-dejavu
-ttf-liberation
-noto-fonts
-ttf-font-awesome
-ttf-jetbrains-mono
-noto-fonts-emoji
-nerd-fonts-fira-code
-nerd-fonts-hack
-ttf-ms-fonts
-ttf-roboto
-ttf-opensans
-alacritty
-rofi
-picom
-feh
-python-pywal
-lua
-awesome
-ly
-github-cli
-gitkraken
-jetbrains-toolbox
+xorg-xmodmap
+xorg-xev
+
+nvidia-dkms
+nvidia-utils
+nvidia-settings
 firefox
-google-chrome
-1password
-1password-cli
-wavebox
-starship
+
+# Fonts
+ttf-jetbrains-mono-nerd
+noto-fonts-emoji
+ttf-nerd-fonts-symbols
+
+  80  sudo pacman -S ttf-nerd-fonts-symbols
+  250  sudo pacman -S ttf-nerd-fonts-symbols
+   36  sudo pacman -S ttf-nerd-fonts-symbols-mono ttf-firacode-nerd
+
+# Sound
+pipewire
+pipewire-pulse
+pipewire-alsa
+wireplumber
+
+# Video and Audio
+v4l-utils
+mpv
+playerctl
+
+# Bluetooth
+bluez
+bluez-utils
+
+# Development
+nvm
+k9s
+docker
+docker-compose
+aws-cli-v2
+github-cli
+
+# Utils
+flameshot

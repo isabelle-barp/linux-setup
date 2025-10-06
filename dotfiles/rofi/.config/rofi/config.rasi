@@ -1,0 +1,65 @@
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+configuration {
+	font: "JetBrainsMono Nerd Font Thin 26";
+	modi: "drun, run";
+	show-icons: true;
+	display-drun: ">>";
+	display-run: ">";
+	icon-theme: "Papirus";
+}
+
+* {
+	bg:	@background;
+	fg:	@foreground;
+	accent: @color4;
+	subtle:	@color8;
+}
+
+
+window {
+	location: center;
+	anchor: center;
+	width: 40%;
+	border: 0px;
+	padding: 18px;
+	background-color: @bg;
+}
+
+mainbox {
+	children: [inputbar, listview];
+	spacing: 10px;
+}
+
+inputbar {
+	expand: false;
+	padding: 10px 12px;
+	border: 0px;
+	border-radius: 10px;
+	background-color: @subtle;
+	text-color: @fg;
+}
+
+listview {
+	lines: 9;
+	spacing: 6px;
+	scrollbar: false;
+	background-color: transparent;
+	fixed-height: false;
+}
+
+element {
+	padding: 8px 10px;
+	border-radius: 8px;
+	background-color: transparent;
+	text-color: @fg;
+}
+
+element selected {
+	backrground-color: @accent;
+	text-color: #ffffff;
+}
+
+element icon {
+	size: 1em;
+}

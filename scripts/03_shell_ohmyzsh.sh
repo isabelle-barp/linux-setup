@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Instala Zsh + Oh My Zsh (idempotente) no Arch Linux
+# Configura Oh My Zsh (idempotente) no Arch Linux
 # Uso:
-#   bash scripts/02_shell_ohmyzsh.sh
+#   bash scripts/03_shell_ohmyzsh.sh
 # Variáveis opcionais:
 #   SHELL_SET_DEFAULT=0   # não trocar o shell padrão (default: 1)
 #   ZSH_THEME=robbyrussell # tema do Oh My Zsh (default: robbyrussell)
@@ -21,20 +21,24 @@ if [[ ! -r "$ROOT_DIR/lib/log.sh" ]]; then
 fi
 # shellcheck source=/dev/null
 source "$ROOT_DIR/lib/log.sh"
-source "$ROOT_DIR/lib/pacman_official.sh"
 
 # Config
 SHELL_SET_DEFAULT="${SHELL_SET_DEFAULT:-1}"
 ZSH_THEME="${ZSH_THEME:-robbyrussell}"
 EXTRA_PLUGINS="${EXTRA_PLUGINS:-}"
 
-log::section "Instalando Zsh + Oh My Zsh"
+log::section "Configurando Oh My Zsh"
 
-# Dependências
-pacq -Sy
-pacq -S --needed zsh git curl ca-certificates || true
+# Verifica dependências básicas (instalação via pacman deve ocorrer antes)
+missing=()
+command -v zsh >/dev/null 2>&1 || missing+=("zsh")
+command -v git >/dev/null 2>&1 || missing+=("git")
+if (( ${#missing[@]} > 0 )); then
+  log::error "Dependências ausentes: ${missing[*]}.\nInstale via pacman antes de continuar (ex.: adicione em config/pacman-packages.txt e rode scripts/00_pacman.sh)."
+  exit 1
+fi
 
-# Instala Oh My Zsh de forma idempotente (clone direto, sem rodar script remoto)
+# Instala/atualiza Oh My Zsh de forma idempotente (clone direto, sem rodar script remoto)
 ZSH_DIR="${ZSH:-$HOME/.oh-my-zsh}"
 if [[ -d "$ZSH_DIR" ]]; then
   log::info "Oh My Zsh já presente em $ZSH_DIR"
@@ -141,4 +145,4 @@ else
   log::info "SHELL_SET_DEFAULT=0 — não alterando o shell padrão."
 fi
 
-log::success "Zsh + Oh My Zsh prontos. Abra um novo terminal (ou rode: exec zsh)"
+log::success "Oh My Zsh configurado. Abra um novo terminal (ou rode: exec zsh)"

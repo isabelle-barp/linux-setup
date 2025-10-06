@@ -1,0 +1,31 @@
+# Example Alacritty config
+# This file will be symlinked to ~/.config/alacritty/alacritty.toml via:
+#   bash scripts/80_dotfiles.sh alacritty
+
+[window]
+opacity = 0.95
+padding = { x = 6, y = 6 }
+dynamic_title = true
+
+[font]
+# Adjust to a font you have installed
+normal = { family = "JetBrainsMono Nerd Font", style = "Thin" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+size = 12.0
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
+
+# If you use pywal, uncomment to import colors
+# import = ["~/.cache/wal/colors-alacritty.toml"]
