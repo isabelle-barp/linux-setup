@@ -23,7 +23,10 @@ for s in \
   03_shell_ohmyzsh \
   10_ly \
   15_folders \
+  30_docker \
+  40_bluetooth \
   80_dotfiles \
+  81_desktop_files \
   90_cleanup
 do
   script="$ROOT_DIR/scripts/${s}.sh"
