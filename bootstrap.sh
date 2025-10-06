@@ -22,6 +22,7 @@ for s in \
   02_zsh \
   03_shell_ohmyzsh \
   10_ly \
+  15_folders \
   80_dotfiles \
   90_cleanup
 do

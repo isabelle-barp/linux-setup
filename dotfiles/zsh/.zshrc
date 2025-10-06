@@ -127,9 +127,12 @@ if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
 
-export GTK_THEME=Nordic
+export GTK_THEME=WhiteSur-Light
 export XDG_CURRENT_DESKTOP=i3
-export GTK_APPLICATION_PREFER_DARK_THEME=1
-export CHROME_FORCE_DARK_MODE=1
+export GTK_APPLICATION_PREFER_DARK_THEME=0
+export CHROME_FORCE_DARK_MODE=0
 # Improve Java (JetBrains) window behavior under i3
 export _JAVA_AWT_WM_NONREPARENTING=1
+export ZSH="/root/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)

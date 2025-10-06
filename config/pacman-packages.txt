@@ -4,7 +4,7 @@ git
 zsh
 
 # Interface
-i3
+i3-wm
 polybar
 rofi
 feh
@@ -13,7 +13,7 @@ dunst
 libnotify
 ranger
 conky
-stows
+stow
 
 # Python
 python-pip
@@ -37,10 +37,8 @@ firefox
 ttf-jetbrains-mono-nerd
 noto-fonts-emoji
 ttf-nerd-fonts-symbols
-
-  80  sudo pacman -S ttf-nerd-fonts-symbols
-  250  sudo pacman -S ttf-nerd-fonts-symbols
-   36  sudo pacman -S ttf-nerd-fonts-symbols-mono ttf-firacode-nerd
+ttf-nerd-fonts-symbols-mono
+ttf-firacode-nerd
 
 # Sound
 pipewire

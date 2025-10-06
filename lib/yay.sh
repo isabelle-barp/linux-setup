@@ -38,11 +38,8 @@ aur_install() {
     install_yay
   fi
 
-  if [[ "${DEBUG:-0}" == "1" ]]; then
-    yay --noconfirm "$@"
-  else
-    yay --noconfirm --quiet "$@" 2>/dev/null
-  fi
+  # Mostrar progresso para evitar a impressão de travamento e manter não interativo
+  yay --noconfirm --sudoloop "$@"
 }
 
 # Verifica se pacote existe no AUR

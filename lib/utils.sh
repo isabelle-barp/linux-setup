@@ -20,8 +20,13 @@ return 1
 
 utils::require_arch(){
 if [[ -r /etc/os-release ]]; then . /etc/os-release; fi
-[[ ${ID:-} == arch ]] || {
-echo "Esta automação é para Arch Linux"; exit 1; }
+local id="${ID:-}"
+local like="${ID_LIKE:-}"
+if [[ "${id,,}" == "arch" || "${like,,}" == *"arch"* ]]; then
+  return 0
+fi
+echo "Esta automação é para Arch Linux (ou derivadas). Detectado: ID='${id}', ID_LIKE='${like}'" >&2
+exit 1
 }
 
 

@@ -1,5 +1,5 @@
 set $mod Mod4
-font pang0:JetBrains Mono Thin 16
+font pango:JetBrains Mono Thin 16
 
 exec --no-startup-id dex --autostart --environment i3
 
@@ -187,7 +187,7 @@ for_window [class="^Polybar$"] sticky enable
 
 for_window [class=".*"] border pixel 5
 
-exec_always --no-startup-id feh --bg-max $HOME/Images/Wallpapers/alone_space.jpg
+exec_always --no-startup-id feh --bg-max $HOME/Pictures/Wallpapers/landscape.jpg
 exec_always --no-startup-id wal -n -R
 
 include $HOME/.cache/wal/colors-wal.i3
@@ -210,4 +210,5 @@ assign [class="Conky"] 10
 no_focus [class="Conky"]
 
 # (Optional) Start it on that workspace after i3 starts
-exec --no-startup-id conky -c ~/.config/conky/conky.conf
+# exec --no-startup-id conky -c ~/.config/conky/conky.conf
+exec --no-startup-id xsettingsd
