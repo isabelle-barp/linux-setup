@@ -6,8 +6,6 @@
    10  sudo grub-mkconfig -o /boot/grub/grub.cfg
   14  xrandr --output HDMI-0 --mode 7680x2160 --rate 120
   18  cd Code/Personal
-  27  rm .bash_logout .bash_profile .bashrc
-   42  mv picom.conf ./picom
    63  sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
    64  xset s off
    65  xset -dpms
@@ -16,12 +14,4 @@
    82  sudo vim /etc/default/grub
    83  sudo grub-mkconfig -o /boot/grub/grub.cfg
   111  sudo vim /etc/modprobe.d/nvidia.conf
-  204  mkdir -p ~/.config/wal/templates
-  205  vim .config/wal/templates/colors-alacritty.toml
-  222  vim .config/picom/picom.conf
   225  cp /etc/ly/config.ini ~/.config/ly
-  28  vim .config/ly/config.ini
-  253  vim .config/polybar/config.ini
-  256  vim .config/i3/config
-
-  16  git config --global core.editor "vim"

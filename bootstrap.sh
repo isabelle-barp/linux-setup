@@ -23,6 +23,7 @@ for s in \
   03_shell_ohmyzsh \
   10_ly \
   15_folders \
+  25_git \
   30_docker \
   40_bluetooth \
   80_dotfiles \
