@@ -126,3 +126,8 @@ fi
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
+
+export GTK_THEME=Nordic
+export XDG_CURRENT_DESKTOP=i3
+export GTK_APPLICATION_PREFER_DARK_THEME=1
+export CHROME_FORCE_DARK_MODE=1
