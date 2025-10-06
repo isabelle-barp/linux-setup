@@ -19,12 +19,9 @@ export $(grep -v '^#' .env 2>/dev/null | xargs -d '\n' -r) || true
 for s in \
   00_pacman \
   01_yay \
-  01_zsh \
-  02_shell_ohmyzsh \
-  03_startship \
-  08_python \
+  02_zsh \
+  03_shell_ohmyzsh \
   10_ly \
-  30_podman \
   80_dotfiles \
   90_cleanup
 do
