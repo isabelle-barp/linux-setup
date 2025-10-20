@@ -136,3 +136,6 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export ZSH="/root/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+
+# add Pulumi to the PATH
+export PATH=$PATH:/home/isabelle/.pulumi/bin

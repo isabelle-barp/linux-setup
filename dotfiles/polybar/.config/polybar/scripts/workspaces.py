@@ -635,11 +635,11 @@ def print_all_workspaces():
                 # Workspace doesn't exist yet - show as empty
                 is_focused = focused_workspace and ws_name == focused_workspace.name
                 if is_focused:
-                    # Focused nonexistent workspace - dimmed blue
-                    workspace_outputs.append(f"%{{F#5E81AC}}{ws_name}%{{F-}}")
+                    # Focused nonexistent workspace - dimmed blue with click
+                    workspace_outputs.append(f"%{{A1:i3-msg workspace number {ws_name}:}}%{{F#5E81AC}}{ws_name}%{{F-}}%{{A}}")
                 else:
-                    # Unfocused nonexistent workspace - dimmed gray
-                    workspace_outputs.append(f"%{{F#4C566A}}{ws_name}%{{F-}}")
+                    # Unfocused nonexistent workspace - dimmed gray with click
+                    workspace_outputs.append(f"%{{A1:i3-msg workspace number {ws_name}:}}%{{F#4C566A}}{ws_name}%{{F-}}%{{A}}")
             else:
                 # Workspace exists - check if it has windows
                 icons = get_workspace_icons(ws)
@@ -647,17 +647,17 @@ def print_all_workspaces():
                 is_focused = focused_workspace and ws_name == focused_workspace.name
                 
                 if is_empty:
-                    # Empty workspace styling
+                    # Empty workspace styling with click
                     if is_focused:
-                        workspace_outputs.append(f"%{{F#A3BE8C}}{ws_name}%{{F-}}")
+                        workspace_outputs.append(f"%{{A1:i3-msg workspace number {ws_name}:}}%{{F#A3BE8C}}{ws_name}%{{F-}}%{{A}}")
                     else:
-                        workspace_outputs.append(f"%{{F#3B4252}}{ws_name}%{{F-}}")
+                        workspace_outputs.append(f"%{{A1:i3-msg workspace number {ws_name}:}}%{{F#3B4252}}{ws_name}%{{F-}}%{{A}}")
                 else:
-                    # Workspace with windows
+                    # Workspace with windows - make entire area clickable (number + icons)
                     if is_focused:
-                        workspace_outputs.append(f"%{{F#A3BE8C}}{ws_name} {' '.join(icons)}%{{F-}}")
+                        workspace_outputs.append(f"%{{A1:i3-msg workspace number {ws_name}:}}%{{F#A3BE8C}}{ws_name} {' '.join(icons)}%{{F-}}%{{A}}")
                     else:
-                        workspace_outputs.append(f"%{{F#D08770}}{ws_name} {' '.join(icons)}%{{F-}}")
+                        workspace_outputs.append(f"%{{A1:i3-msg workspace number {ws_name}:}}%{{F#D08770}}{ws_name} {' '.join(icons)}%{{F-}}%{{A}}")
         
         if workspace_outputs:
             result = f"%{{F#EBCB8B}} | %{{F-}}".join(workspace_outputs)
