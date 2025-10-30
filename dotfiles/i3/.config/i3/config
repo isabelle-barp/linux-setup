@@ -3,7 +3,7 @@ font pango:JetBrains Mono Thin 16
 
 exec --no-startup-id dex --autostart --environment i3
 
-bindsym $mod+Shift+e exec sudo systemctl reboot
+# bindsym $mod+Shift+e exec sudo systemctl reboot
 
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -104,6 +104,18 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+# Assign workspaces to outputs
+workspace $ws1 output HDMI-0
+workspace $ws2 output HDMI-0
+workspace $ws3 output HDMI-0
+workspace $ws4 output HDMI-0
+workspace $ws5 output HDMI-0
+workspace $ws6 output HDMI-0
+workspace $ws7 output HDMI-0
+workspace $ws8 output DP-0
+workspace $ws9 output DP-0
+workspace $ws10 output DP-0
+
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
 bindsym $mod+2 workspace number $ws2
@@ -181,7 +193,10 @@ bindsym $mod+r mode "resize"
 #	}
 #}
 
-exec --no-startup-id xrandr --output HDMI-0 --mode 7680x2160 --rate 120
+exec_always --no-startup-id xrandr --output HDMI-1 --off --output DP-1 --off 2>/dev/null
+exec_always --no-startup-id xrandr --output DP-0 --mode 3440x1440 --rate 60 --pos 2120x0 --scale 1x1
+exec_always --no-startup-id xrandr --output HDMI-0 --mode 7680x2160 --rate 60 --primary --pos 0x1440 --scale 1x1
+
 exec_always --no-startup-id picom --config $HOME/.config/picom/picom.conf
 
 gaps inner 5
@@ -194,7 +209,7 @@ for_window [class="^Polybar$"] sticky enable
 
 for_window [class=".*"] border pixel 5
 
-exec_always --no-startup-id feh --bg-max $HOME/Pictures/Wallpapers/landscape.jpg
+exec_always --no-startup-id feh --bg-max $HOME/Pictures/Wallpapers/landscape.jpg $HOME/Pictures/Wallpapers/landscape_small.jpg
 exec_always --no-startup-id wal -n -R
 
 include $HOME/.cache/wal/colors-wal.i3
@@ -209,9 +224,11 @@ for_window [class="jetbrains-toolbox"] floating enable, move position center
 for_window [class="^jetbrains-.*" window_type="dialog"] floating enable, move window to output current, move position center, focus
 for_window [class="^jetbrains-.*" window_type="utility"] floating enable, move window to output current, move position center
 
-bindsym Print exec --no-startup-id LANG=en_US.UTF-8 flameshot gui -c
+# bindsym Print exec --no-startup-id LANG=en_US.UTF-8 flameshot gui -c
+bindsym XF86ScreenSaver exec --no-startup-id LANG=en_US.UTF-8 flameshot gui -c 0
 
-exec_always --no-startup-id setxkbmap -layout br -variant abnt2
+# exec_always --no-startup-id setxkbmap -layout br -variant abnt2
+exec_always --no-startup-id setxkbmap -model apple -layout us -variant mac
 
 assign [class="Conky"] 10
 no_focus [class="Conky"]

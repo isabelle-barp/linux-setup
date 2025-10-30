@@ -139,3 +139,9 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # add Pulumi to the PATH
 export PATH=$PATH:/home/isabelle/.pulumi/bin
+
+
+export AWS_PROFILE=yacco-admin
+export PATH="$HOME/.local/bin:$PATH"
+
+export OLLAMA_API_BASE=http://127.0.0.1:11434
